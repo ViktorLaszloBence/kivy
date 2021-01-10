@@ -1,0 +1,87 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+
+
+
+
+<MainWindow>:
+
+    name: "main"
+
+    termek: termek
+    marka: marka
+    mennyiseg: mennyiseg
+    GridLayout:
+        cols:1
+        padding: 50,30,50,30
+        GridLayout:
+            cols:2
+
+            Label:
+                text:"Termék."
+
+            TextInput:
+                id: termek
+                multiline:False
+            Label:
+                text:"Márka."
+
+            TextInput:
+                id: marka
+                multiline:False
+
+            Label:
+                text:"mennyiség."
+
+            TextInput:
+                id: mennyiseg
+                multiline:False
+
+        Button:
+            text:"Hozzáad"
+            on_release: root.press_submit()
+
+        Button:
+            text:"Bevásárlólista"
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = 'left'
+<SecondWindow>:
+
+    name: "second"
+    GridLayout:
+        cols:1
+
+        Label:
+            text:"SHOPPING LIST"
+            font_size: 50
+
+        RecycleView:
+            viewclass: "Button"
+            RecycleBoxLayout:
+
+        Button:
+            text:"Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = 'right'
+
+
+<ThirdWindow>:
+
+    name: "third"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols:2
+
+        Button:
+            text:"Go Back"
+
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = 'right'
